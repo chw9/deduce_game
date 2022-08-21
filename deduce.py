@@ -1,3 +1,6 @@
+# Caroline Winakur 2022
+# Based on Deduce or Die game
+
 import random
 from os.path import exists
 from readline import get_history_length
