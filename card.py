@@ -211,32 +211,3 @@ def accusation(player=1):
             print("Sorry, that's not correct... look at dontread.txt for the answer.")
     else:
         print("Sorry, that's not correct... look at dontread.txt for the answer.")
-
-
-################################## gameplay: ##################################
-
-shuffle(deck)
-shuffle(q_deck_remaining)
-p1, p2, p3, e, w, murderer = deal(deck)
-
-playing = True
-q_num = 1
-
-print(f"\nQuestion {q_num}: ")
-
-while playing:
-    a = show_q_cards(q_deck_remaining)
-    sel_cards, p = get_q_selection(a)
-    parse_question(sel_cards, p)
-    guess = input("\nWould you like to make an accusation (y), continue (n), or quit (q)? (y/n/q): ")
-
-    if guess == "y":
-        accusation()
-        playing = False
-    elif guess == "q":
-        print("\nOkay")
-        playing = False
-    else:
-        q_num = q_num + 1
-        print(f"\nQuestion {q_num}: ")
-

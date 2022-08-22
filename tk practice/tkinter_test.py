@@ -64,9 +64,9 @@ print(g1)
 print(g2)
 
 ace_ = Image.open("../cards/ace_of_spades.png")
-l = ace_.size[0] # don't actually know which is length and which is width
-w = ace_.size[1]
-ace_ = ace_.resize([int(l*.3), int(w*.3)], Image.ANTIALIAS)
+w = ace_.size[0] # don't actually know which is length and which is width but pretty sure this is right?
+l = ace_.size[1]
+ace_ = ace_.resize([int(w*.3), int(l*.3)], Image.ANTIALIAS)
 ace_spades = ImageTk.PhotoImage(ace_)
 # img = ace_spades.subsample(1,2)
 

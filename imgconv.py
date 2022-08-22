@@ -4,6 +4,8 @@
 from PIL import Image
 import numpy as np
 from pathlib import Path
+
+blue_color = (8, 50, 160)
  
 # get the path/directory
 folder_dir = 'cards'
@@ -19,5 +21,7 @@ for image in images: # image is a pathname!
         for j in range(0,height):
             data = img.getpixel((i,j))
             if (data[0]<250 and data[1]<250 and data[2]<250): # since ace has shading, not looking for exact value
-                img.putpixel((i,j),(0, 0, 255)) # convert to blue
-    img.save("cards/blue_" + str(image)[6:])
+                # img.putpixel((i,j),(0, 0, 255)) # convert to blue
+                img.putpixel((i,j),blue_color)
+    # img.save("cards/blue_" + str(image)[6:])
+    img.save(str(image)[6:])
