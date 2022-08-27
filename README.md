@@ -13,7 +13,7 @@ Download this repo to your computer. Decide which version you want to play:
 - Use the dropdowns next to these three cards to select two cards and a player to direct the question to. Make sure to list the cards in the order you want the range to be evaluated in!
 - Once you click "INTERROGATE", the answer to your question will display below the question cards.
 - Click on the deck again to display the next three question cards.
-- Continue flipping cards and asking questions until you wish to make a guess. Remember, once you guess, you will either win or lose - no second chances! 
+- Continue flipping cards and asking questions until you wish to guess the two evidence cards and accuse (or frame) a player of being the murderer. Remember, once you guess, you will either win or lose - no second chances! 
 - To make a guess, select options from the dropdowns in the top right of the screen, then click "GUESS". The order of the two evidence cards doesn't matter - just make sure you match up the correct value with the correct suit. Select the player who has the murderer card, or, if the murderer card is in your hand, the evidence cards, or the witness card, select the player with the card that you would like to frame.
 - If you wish to see all of the hidden cards, click the "REVEAL" button at the bottom of the screen. This action will end the game. The murderer card is highlighted in yellow. If there is a frame card instead, it is highlighted in red.
 - The "CLEAR" button simply clears the screen. 
