@@ -5,6 +5,7 @@ import tkinter as tk
 from PIL import ImageTk, Image
 from card import *
 import vars
+from tkinter import messagebox
 
 # this is a method so that theoretically someday the "new game" button might be functional :D
 def game_start():
@@ -172,6 +173,8 @@ def flip_deck():
         card_s2.config(bg=mid_green, width=15, highlightbackground=mid_green, activebackground=light_green, fg="white")
         card_s2["menu"].config(activebackground=mid_green)
         card_s2.grid(row=1, column=4)
+    else:
+        messagebox.showinfo("", "Ask a question before drawing new cards!")
 
 def win():
     clear_frame(guess_frm)
@@ -195,6 +198,8 @@ def guess():
             win()
         else:
             lose()
+    else:
+        messagebox.showinfo("", "Make sure you select an option from each dropdown!")
 
 # get question from dropdown values, determine answer
 def interrogate():
@@ -217,6 +222,11 @@ def interrogate():
         answer = parse(first_card, second_card, player_to_be_asked, p2 if player_to_be_asked == "2" else p3)
 
         tk.Label(master=deck_frm, text=f"{answer}", bg=mid_green, fg="white", font=("Arial", 15)).grid(row=4, column=0, columnspan=5)
+    else:
+        if card_selection.get() == card_selection2.get():
+            messagebox.showinfo("", "Make sure you pick two different cards!")
+        else:
+            messagebox.showinfo("", "Draw new cards before asking another question!")
 
 #################### graphics/display ####################
 
