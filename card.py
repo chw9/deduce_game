@@ -5,6 +5,9 @@ import random
 from os.path import exists
 
 class Card:
+    """
+    class to create Card objects which are used for gameplay
+    """
     def __init__(self, value, suit):
          self.val = value
          self.suit = suit
@@ -105,17 +108,30 @@ def deal(deck):
     return p1, p2, p3, e, w, m
 
 def show_q_cards(q_deck_remaining):
+    """
+    flips the next three cards in the q_deck and returns them as a tuple
+    """
+    # TODO: make this work properly (currently reshuffles deck each time after q_deck_remaining depletes)
+    # probably an issue with variable scope
     if len(q_deck_remaining) == 0:
-        q_deck_remaining = shuffle(copy_deck(q_deck))
+        q_deck_remaining = copy_deck(q_deck)
+        shuffle(q_deck_remaining)
+    
+    print(len(q_deck_remaining))
 
     three_q_cards = (q_deck_remaining[0], q_deck_remaining[1], q_deck_remaining[2])
+   
     for i in range(3):
-        q_deck_remaining.remove(q_deck_remaining[0])
+        del q_deck_remaining[0]
+        # print(len(q_deck_remaining))
     return three_q_cards
 
 # TODO: maybe add "confirm selection? y/n"
 # player = 1, 2, or 3 depending on whose turn it is; default is 1
 def get_q_selection(three_cards, player=1):
+    """
+    method for command line version of the game (uses printed prompts rather than GUI)
+    """
     print(f"  Card options: 1.) {three_cards[0]}, 2.) {three_cards[1]}, 3.) {three_cards[2]} ")
     print("  Remember: order matters! Range will be determined in order of selection.")
     choice = input("> Select two cards for your question by typing two numbers (no spaces or punctuation): ")
@@ -131,6 +147,9 @@ def get_q_selection(three_cards, player=1):
     return selected, player
 
 def parse_question(two_cards, player):
+    """
+    function for the command line version, prints question + answer pairs
+    """
     c1 = two_cards[0]
     c2 = two_cards[1]
 
@@ -179,7 +198,43 @@ def parse_question(two_cards, player):
     s = "" if a == 1 else "s"
     print(f"> Player {player} has {a} card{s} in this range")
 
+def parse(firstcard, secondcard, player, hand):
+    """
+    function for graphical version, determines the number of cards the player has in the 
+    interrogation range and returns as a string
+    """
+    numcards = 0
+
+    if firstcard.val == secondcard.val and firstcard.suit == secondcard.suit:
+        numcards = 1 if firstcard in list(hand) else 0
+    elif firstcard.val == secondcard.val:
+        for card in hand:
+            if card.val == firstcard.val:
+                numcards=numcards+1
+    elif firstcard.suit == secondcard.suit:
+        for card in hand:
+            if firstcard.val < secondcard.val:
+                if card.suit == firstcard.suit and card.val >= firstcard.val and card.val <= secondcard.val:
+                    numcards=numcards+1
+            else:
+                if card.suit == firstcard.suit and (card.val >= firstcard.val or card.val <= secondcard.val):
+                    numcards=numcards+1
+    else:
+        for card in hand:
+            if firstcard.val < secondcard.val:
+                if card.val >= firstcard.val and card.val <= secondcard.val:
+                    numcards=numcards+1
+            else:
+                if card.val >= firstcard.val or card.val <= secondcard.val:
+                    numcards=numcards+1
+
+    s = "" if numcards == 1 else "s"
+    return (f"Player {player} has {numcards} card{s} in this range")
+
 def accusation(player=1):
+    """
+    command line version to get player input for accusation and determine if they win
+    """
     if (player == 1):
         guess = input("\nWhich player is the murderer? (2 or 3): ")
         player_hand = p1
@@ -211,3 +266,21 @@ def accusation(player=1):
             print("Sorry, that's not correct... look at dontread.txt for the answer.")
     else:
         print("Sorry, that's not correct... look at dontread.txt for the answer.")
+
+def accuse(player_hand, hand, e1_guess, e2_guess, witness, true_e1, true_e2, murderer):
+    """
+    graphic version, determines if user's guess is correct, accounts for if the murderer
+    card is in the user's hand, evidence, or witness cards. returns true if user wins
+    """
+    frame = Card(murderer.val, murderer.suit)
+
+    while frame in player_hand or frame == witness or frame == true_e1 or frame == true_e2:
+        frame = Card(frame.val + 1 if frame.val < 6 else 1, frame.suit)
+
+    if frame in hand:
+        if (e1_guess == true_e1 and e2_guess == true_e2) or (e2_guess == true_e1 and e1_guess == true_e2):
+            return True
+        else:
+            return False
+    else:
+        return False

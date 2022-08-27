@@ -131,6 +131,9 @@ def get_q_selection(three_cards, player=1):
     return selected, player
 
 def parse_question(two_cards, player):
+    """
+    prints question and answer pairs
+    """
     c1 = two_cards[0]
     c2 = two_cards[1]
 
@@ -180,6 +183,9 @@ def parse_question(two_cards, player):
     print(f"> Player {player} has {a} card{s} in this range")
 
 def accusation(player=1):
+    """
+    get user's guess, determine if it is correct or not
+    """
     if (player == 1):
         guess = input("\nWhich player is the murderer? (2 or 3): ")
         player_hand = p1
@@ -219,12 +225,22 @@ shuffle(deck)
 shuffle(q_deck_remaining)
 p1, p2, p3, e, w, murderer = deal(deck)
 
+yourhand = ""
+
+for handcard in p1:
+    # TODO: fix last comma
+    yourhand = yourhand + str(handcard) + ", "
+
+# display shown cards
+print(f"\nYour hand: {yourhand[0:len(yourhand)-2]}")
+print(f"Witness card: {w}")
+
 playing = True
 q_num = 1
 
-print(f"\nQuestion {q_num}: ")
-
+# continue asking questions and getting user input until user chooses to accuse or quit
 while playing:
+    print(f"\nQuestion {q_num}: ")
     a = show_q_cards(q_deck_remaining)
     sel_cards, p = get_q_selection(a)
     parse_question(sel_cards, p)
@@ -238,5 +254,4 @@ while playing:
         playing = False
     else:
         q_num = q_num + 1
-        print(f"\nQuestion {q_num}: ")
 
