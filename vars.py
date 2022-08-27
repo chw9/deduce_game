@@ -10,3 +10,5 @@ scale_factor = .25
 
 # shuffle(deck)
 # shuffle(q_deck_remaining)
+
+q_deck_remaining = copy_deck(q_deck)

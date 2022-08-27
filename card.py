@@ -124,7 +124,7 @@ def show_q_cards(q_deck_remaining):
     for i in range(3):
         del q_deck_remaining[0]
         # print(len(q_deck_remaining))
-    return three_q_cards
+    return three_q_cards, q_deck_remaining
 
 # TODO: maybe add "confirm selection? y/n"
 # player = 1, 2, or 3 depending on whose turn it is; default is 1

@@ -10,7 +10,7 @@ from tkinter import messagebox
 # this is a method so that theoretically someday the "new game" button might be functional :D
 def game_start():
     shuffle(deck)
-    shuffle(q_deck_remaining)
+    shuffle(vars.q_deck_remaining)
     vars.asked = 0
     vars.flipped = 0
 
@@ -130,7 +130,7 @@ def display_cards(frame, player, p, list_var):
 # when deck card is clicked, show the next three cards if a question was asked for the previous three    
 def flip_deck():
     if vars.flipped == vars.asked:
-        a = show_q_cards(q_deck_remaining)
+        a, vars.q_deck_remaining = show_q_cards(vars.q_deck_remaining)
         global ii
         ii = []
         colind=1
@@ -223,7 +223,9 @@ def interrogate():
 
         tk.Label(master=deck_frm, text=f"{answer}", bg=mid_green, fg="white", font=("Arial", 15)).grid(row=4, column=0, columnspan=5)
     else:
-        if card_selection.get() == card_selection2.get():
+        if vars.flipped == 0:
+            messagebox.showinfo("", "Draw cards!")
+        elif card_selection.get() == card_selection2.get():
             messagebox.showinfo("", "Make sure you pick two different cards!")
         else:
             messagebox.showinfo("", "Draw new cards before asking another question!")
@@ -337,7 +339,7 @@ player.pack()
 
 guess_btn = tk.Button(
     master=guess_select_frm,
-    text="GUESS!",
+    text="GUESS",
     bg=light_green,
     fg="white",
     activebackground=mid_green,
@@ -414,7 +416,8 @@ for i in range(3):
 # TODO: make this functional
 new_btn = tk.Button(
     master=menu_btn_frms[0],
-    text="NEW GAME",
+    # text="NEW GAME",
+    text="CLEAR",
     bg=dk_green,
     fg="white",
     activebackground=mid_green,
