@@ -1,4 +1,4 @@
-p1 hand: 4 of hearts, 2 of spades, 6 of clubs, 5 of hearts, A of spades
-p2 hand: A of hearts, 3 of hearts, 2 of clubs, 6 of hearts, 3 of spades
-p3 hand: 5 of spades, 6 of spades, 4 of spades, A of clubs, 3 of clubs
-evidence cards: 2 of hearts, 4 of clubs; murderer: 6 of spades
+p1 hand: A of spades, 5 of hearts, 5 of spades, 6 of spades, 6 of clubs
+p2 hand: 3 of spades, 4 of hearts, A of hearts, 3 of clubs, 2 of hearts
+p3 hand: 5 of clubs, 2 of clubs, 6 of hearts, 4 of spades, A of clubs
+evidence cards: 2 of spades, 4 of clubs; murderer: 6 of hearts
