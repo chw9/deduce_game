@@ -146,58 +146,6 @@ def get_q_selection(three_cards, player=1):
 
     return selected, player
 
-def parse_question(two_cards, player):
-    """
-    function for the command line version, prints question + answer pairs
-    """
-    c1 = two_cards[0]
-    c2 = two_cards[1]
-
-    hand = ()
-    if player == "1":
-        hand = p1
-    elif player == "2":
-        hand = p2
-    else:
-        hand = p3
-
-    q = str
-    a = 0
-
-    if c1.val == c2.val and c1.suit == c2.suit:
-        q = f"do you have the {c1}?"
-        a = 1 if c1 in list(hand) else 0
-    elif c1.val == c2.val:
-        q = f"how many {c1.val}s do you have?"
-
-        for card in hand:
-            if card.val == c1.val:
-                a=a+1
-    elif c1.suit == c2.suit:
-        q = f"how many {c2.suit} do you have between {c1.val} and {c2.val}, inclusive?"
-
-        for card in hand:
-            if c1.val < c2.val:
-                if card.suit == c1.suit and card.val >= c1.val and card.val <= c2.val:
-                    a=a+1
-            else:
-                if card.suit == c1.suit and (card.val >= c1.val or card.val <= c2.val):
-                    a=a+1
-    else:
-        q = f"how many cards do you have between {c1.val} and {c2.val}, inclusive?"
-
-        for card in hand:
-            if c1.val < c2.val:
-                if card.val >= c1.val and card.val <= c2.val:
-                    a=a+1
-            else:
-                if card.val >= c1.val or card.val <= c2.val:
-                    a=a+1
-
-    print(f"    @ player {player}: {q}")
-    s = "" if a == 1 else "s"
-    print(f"> Player {player} has {a} card{s} in this range")
-
 def parse(firstcard, secondcard, player, hand):
     """
     function for graphical version, determines the number of cards the player has in the 
@@ -230,42 +178,6 @@ def parse(firstcard, secondcard, player, hand):
 
     s = "" if numcards == 1 else "s"
     return (f"Player {player} has {numcards} card{s} in this range")
-
-def accusation(player=1):
-    """
-    command line version to get player input for accusation and determine if they win
-    """
-    if (player == 1):
-        guess = input("\nWhich player is the murderer? (2 or 3): ")
-        player_hand = p1
-    elif (player == 2):
-        guess = input("\nWhich player is the murderer? (1 or 3): ")
-        player_hand = p2
-    else:
-        guess = input("\nWhich player is the murderer? (1 or 2): ")
-        player_hand = p3
-
-
-    hand = p1 if guess == "1" else p2 if guess == "2" else p3
-    one_higher = Card(murderer.val + 1, murderer.suit)
-
-# TODO: account for if one higher is also in the player's hand
-    if murderer in hand or (murderer in player_hand and one_higher in hand) or (murderer == w and one_higher in hand):
-        evidence_guess_one = input("What do you think the first evidence card is? Order doesn't matter.\nFormat as [number 1-6][suit: c, h, s]. eg 3h is 3 of hearts.\nYour guess: ")
-        evidence_guess_two = input("What do you think the second evidence card is? Order doesn't matter.\nFormat as [number 1-6][suit: c, h, s]. eg 3h is 3 of hearts.\nYour guess: ")
-
-        suit1 = "clubs" if evidence_guess_one[1] == "c" else "hearts" if evidence_guess_one[1] == "h" else "spades"
-        suit2 = "clubs" if evidence_guess_two[1] == "c" else "hearts" if evidence_guess_two[1] == "h" else "spades"
-
-        e1 = Card(int(evidence_guess_one[0:1]), suit1)
-        e2 = Card(int(evidence_guess_two[0:1]), suit2)
-
-        if (e1 == e[0] and e2 == e[1]) or (e2 == e[0] and e1 == e[1]):
-            print("Congratulations, you win!")
-        else:
-            print("Sorry, that's not correct... look at dontread.txt for the answer.")
-    else:
-        print("Sorry, that's not correct... look at dontread.txt for the answer.")
 
 def accuse(player_hand, hand, e1_guess, e2_guess, witness, true_e1, true_e2, murderer):
     """
