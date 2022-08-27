@@ -1,5 +1,5 @@
 # Deduce or Die (single player practice)
-## Based on the 3-player version of Deduce or Die, rules and gameplay are similar to that of [the full version](http://www.thegamesjournal.com/rules/DeduceOrDie.shtml).
+## Based on the 3-player version of Deduce or Die; rules and gameplay are similar to that of [the full version](http://www.thegamesjournal.com/rules/DeduceOrDie.shtml).
 
 # How to use
 Download this repo to your computer. Decide which version you want to play:
