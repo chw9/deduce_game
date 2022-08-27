@@ -19,6 +19,6 @@ Download this repo to your computer. Decide which version you want to play:
 - The "CLEAR" button simply clears the screen. 
 
 ### Command line:
-#### Interact with the program by typing responses to prompts given in the command line. Use the exact response options given in the prompt. To play this version, run `python deduce.py`.
+#### Interact with the program by typing responses to prompts given in the command line. Choose one of the response options given in the prompt and type it exactly as it appears. To play this version, run `python deduce.py`.
 
 If you wish to see all of the hidden cards, look at the file `dontread.txt`.
