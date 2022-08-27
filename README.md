@@ -5,8 +5,8 @@
 Download this repo to your computer. Decide which version you want to play:
 
 ## Versions
-###Graphic interface:
-####See images of the visible cards; ask questions and accuse by selecting options from dropdowns and clicking buttons. To play this version, run `python deduce_graphic.py`.
+### Graphic interface:
+#### See images of the visible cards; ask questions and accuse by selecting options from dropdowns and clicking buttons. To play this version, run `python deduce_graphic.py`.
 
 - The interface will open with a new game. View your hand along the bottom of the screen and the witness card at the top.
 - Click on the deck (facedown card in the middle row) to flip up the first three question cards.
@@ -18,4 +18,4 @@ Download this repo to your computer. Decide which version you want to play:
 - If you wish to see all of the hidden cards, click the "REVEAL" button at the bottom of the screen. This action will end the game.
 
 ### Command line:
-####Interact with the program by typing responses to prompts given in the command line. Use the exact response options given in the prompt. To play this version, run `python deduce.py`.
+#### Interact with the program by typing responses to prompts given in the command line. Use the exact response options given in the prompt. To play this version, run `python deduce.py`.
