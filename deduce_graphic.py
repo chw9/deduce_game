@@ -43,7 +43,7 @@ def reveal():
     clear_frame(deck_frm)
     clear_frame(hand_frm)
 
-    # TODO: prob don't use global? but don't want to deal with that now bc it works so /shrug
+    # TODO: reimplement without using global vars
     global j
     j = []
     display_cards(guess_frm, p2, 2, j)
@@ -51,7 +51,7 @@ def reveal():
     k = []
     display_cards(deck_frm, p3, 3, k)
 
-    # manually display witness, evidence, and murderer i guess
+    # manually display witness, evidence, and murderer
     hand_frm.columnconfigure(0, weight=1)
     hand_frm.columnconfigure(1, weight=1)
     hand_frm.columnconfigure(2, weight=1)
@@ -96,7 +96,7 @@ def reveal():
     m_card_im.grid(row=1, column=3)
 
 
-# TODO: deal with this later. maybe need to segment functionality out to diff files/functions. idk bro
+# TODO: deal with this later - maybe need to segment functionality out to diff files/functions
 def new_game():
     clear_frame(guess_frm)
     clear_frame(deck_frm)
